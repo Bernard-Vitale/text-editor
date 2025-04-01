@@ -4,7 +4,7 @@ A simple text editor for the terminal, written in C. This project was developed 
 
 ## Features
 - Basic text editing capabilities
-- Syntca Highlighting for C and C++
+- Syntax Highlighting for C and C++
 - Terminal-based interface
 - Lightweight and minimalistic
 - `Ctrl-F` to find text within the document
