@@ -17,7 +17,7 @@
 
 /*** defines ***/
 #define CTRL_KEY(k) ((k) & 0x1f) // This macro takes in a letter and gets the value for CTRL+<letter>
-#define TEXT_EDITOR_VERSION "0.0.1"
+#define TEXT_EDITOR_VERSION "1.0.0"
 #define TAB_STOPS 8
 #define QUIT_TIMES 3
 
@@ -132,6 +132,8 @@ void disableRawMode() {
     write(STDOUT_FILENO, "\x1b[H", 3); // Reposition the cursor to the top right
     if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &E.orig_termios) == -1)
         die("tcsetattr");
+
+    write(STDOUT_FILENO, "\033[?1049l", 8); // Exit alternate screen buffer
 }
 
 void enableRawMode() {
@@ -146,6 +148,8 @@ void enableRawMode() {
     raw.c_cc[VTIME] = 1; // This makes it so the read function will return after 100 milliseconds if there is not byte inputted
 
     if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw) == -1) die("tcsetattr");
+
+    write(STDOUT_FILENO, "\033[?1049h", 8); // Enter alternate screen buffer
 }
 
 int editorReadKey() {
