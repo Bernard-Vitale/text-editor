@@ -92,9 +92,9 @@ char *C_HL_extensions[] = {".c", ".h", ".cpp", NULL};
 char *C_HL_keywords[] = {
     // Keywords 1
     "switch", "if", "while", "for", "break", "continue", "return", "else", "}else",
-    "struct", "union", "typedef", "static", "class", "case", "#include", "#define"
+    "union", "class", "case", "#include", "#define",
     // Keywrods 2
-    "int|", "long|", "double|", "float|", "char|", "unsigned|", "signed|","enum|",
+    "int|", "long|", "double|", "float|", "char|", "unsigned|", "signed|","enum|", "struct|", "static|", "typedef|"
     "void|", NULL
 };
 
