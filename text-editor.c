@@ -91,18 +91,35 @@ struct editorConfig E;
 char *C_HL_extensions[] = {".c", ".h", ".cpp", NULL};
 char *C_HL_keywords[] = {
     // Keywords 1
-    "switch", "if", "while", "for", "break", "continue", "return", "else",
-    "struct", "union", "typedef", "static", "enum", "class", "case",
+    "switch", "if", "while", "for", "break", "continue", "return", "else", "}else",
+    "struct", "union", "typedef", "static", "class", "case", "#include", "#define"
     // Keywrods 2
-    "int|", "long|", "double|", "float|", "char|", "unsigned|", "signed|",
+    "int|", "long|", "double|", "float|", "char|", "unsigned|", "signed|","enum|",
     "void|", NULL
 };
-// char *TXT_HL_extensions[] = {".txt", NULL};
+
+char *JS_HL_extensions[] = {".js", ".mjs", ".cjs", ".ts", NULL};
+char *JS_HL_keywords[] = {
+    // Keywords 1
+    "if", "else", "}else", "switch", "case", "break", "continue", "return", "while", "for", "do", "async", 
+    "await", "yield", "try", "catch", "finally", "throw", "import", "export", "default", "require", "module", "exports", 
+    // Keywrods 2
+    "int|", "long|", "double|", "float|", "char|", "function|",
+    "void|", "let|", "const|", "var|", "true|", "false|", NULL
+};
 
 struct editorSyntax HLDB[] = {
     {
         "c", 
         C_HL_extensions, C_HL_keywords, 
+        "//", 
+        "/*",
+        "*/",
+        HL_HIGHLIGHT_NUMBERS | HL_HIGHLIGHT_STRING
+    },
+    {
+        "js",
+        JS_HL_extensions, JS_HL_keywords,
         "//", 
         "/*",
         "*/",
@@ -352,12 +369,12 @@ void editorUpdateSyntax(erow *row) {
 int syntaxToColor(int hl){
     switch(hl){
         case HL_COMMENT:
-        case HL_MLCOMMENT: return 36;
-        case HL_KEYWORD1: return 33;
-        case HL_KEYWORD2: return 32;
-        case HL_STRING: return 35;
+        case HL_MLCOMMENT: return 32;
+        case HL_KEYWORD1: return 35;
+        case HL_KEYWORD2: return 34;
+        case HL_STRING: return 33;
         case HL_NUMBER: return 31;
-        case HL_MATCH: return 34;
+        case HL_MATCH: return 36;
         default: return 37;
     }
 }
