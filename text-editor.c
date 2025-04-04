@@ -20,6 +20,13 @@
 #define TEXT_EDITOR_VERSION "1.0.0"
 #define TAB_STOPS 8
 #define QUIT_TIMES 3
+#define RED 31
+#define GREEN 32
+#define YELLOW 33
+#define BLUE 34
+#define MAGENTA 35
+#define CYAN 36
+#define WHITE 37
 
 enum editorKey {
     BACKSPACE = 127,
@@ -102,7 +109,7 @@ char *JS_HL_extensions[] = {".js", ".mjs", ".cjs", ".ts", NULL};
 char *JS_HL_keywords[] = {
     // Keywords 1
     "if", "else", "}else", "switch", "case", "break", "continue", "return", "while", "for", "do", "async", 
-    "await", "yield", "try", "catch", "finally", "throw", "import", "export", "default", "require", "module", "exports", 
+    "await", "yield", "try", "catch", "finally", "throw", "import", "export", "default", "require", "module", "exports", "from",
     // Keywrods 2
     "int|", "long|", "double|", "float|", "char|", "function|",
     "void|", "let|", "const|", "var|", "true|", "false|", NULL
@@ -369,13 +376,13 @@ void editorUpdateSyntax(erow *row) {
 int syntaxToColor(int hl){
     switch(hl){
         case HL_COMMENT:
-        case HL_MLCOMMENT: return 32;
-        case HL_KEYWORD1: return 35;
-        case HL_KEYWORD2: return 34;
-        case HL_STRING: return 33;
-        case HL_NUMBER: return 31;
-        case HL_MATCH: return 36;
-        default: return 37;
+        case HL_MLCOMMENT: return GREEN;
+        case HL_KEYWORD1: return MAGENTA;
+        case HL_KEYWORD2: return BLUE;
+        case HL_STRING: return YELLOW;
+        case HL_NUMBER: return RED;
+        case HL_MATCH: return CYAN;
+        default: return WHITE;
     }
 }
 
